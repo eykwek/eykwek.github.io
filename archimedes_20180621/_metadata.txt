@@ -1,0 +1,16 @@
+generated-with: Easy Java/Javascript Simulations, version 5.3, build 180211. Visit http://www.um.es/fem/Ejs
+title: 
+logo-image: 
+author: Author name
+copyright: 
+preferred-width: 800
+preferred-height: 600
+author-image: 
+source: archimedes_20180621.ejss
+main-script: 
+main-simulation: archimedes_20180621_Simulation.xhtml
+available-languages: 
+html-contents: archimedes_20180621_Contents.xhtml
+html-main: archimedes_20180621.xhtml
+page-title: Simulation
+page-index: index.html
