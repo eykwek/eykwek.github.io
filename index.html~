@@ -40,8 +40,8 @@ The newton-meter measures the normal contact force N, which is given by:
 
 N = W - F
 
-N = GMm/R^2 - mRw^2 
-\[ N = \frac{GMm}{R^2} - mR\omega^2 \]
+N = GMm/R^2 - mRw^2 - mRw^2
+\[ N = \frac{GMm}{R^2} \]
 
 N = (6.67 x 10^-11 x 5.98 x 10^24 x 1.00)/(6370,000)^2  - 1.00 x 6370,000 x (2pi / (24 x 3600))^2 = 9.80 N
 </p>

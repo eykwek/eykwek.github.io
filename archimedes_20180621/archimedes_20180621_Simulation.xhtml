@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet"  type="text/css" href="_ejs_library/css/ejss.css" />
+    <script src="_ejs_library/scripts/common_script.js"></script>
+    <script src="_ejs_library/scripts/textresizedetector.js"></script>
+    <script src="_ejs_library/ejsS.v1.min.js"></script>
+<script type="text/javascript"><!--//--><![CDATA[//><!--
+/* _inputParameters: an object with different values for the model parameters */
+function archimedes_20180621(_topFrame,_libraryPath,_codebasePath, _inputParameters) {
+  var _model = EJSS_CORE.createAnimationLMS();
+  var _view;
+  var _isPlaying = false;
+  var _isPaused = true;
+  var _isMobile = (navigator===undefined) ? false : navigator.userAgent.match(/iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile/i);
+
+var _stringProperties = {};
+  var _tools = {
+    showInputDialog : EJSS_INTERFACE.BoxPanel.showInputDialog,
+    showOkDialog : EJSS_INTERFACE.BoxPanel.showOkDialog,
+    showOkCancelDialog : EJSS_INTERFACE.BoxPanel.showOkCancelDialog,
+    downloadText: EJSS_TOOLS.File.downloadText,
+    uploadText: function(action) { EJSS_TOOLS.File.uploadText(_model,action); } 
+  };
+
+  function _play()  { _isPaused = false; _isPlaying = true;  _model.play();  }
+  function _pause() { _isPaused = true;  _isPlaying = false; _model.pause(); }
+  function _step()  { _pause();  _model.step(); }
+  function _reset() { _model.reset();  _isPaused = _model.isPaused(); _isPlaying = _model.isPlaying(); }
+  _model._play  = _play;
+  _model._pause = _pause;
+  _model._step  = _step;
+  _model._reset = _reset;
+  function _update() { _model.update(); }
+  function _initialize() { _model.initialize(); }
+  function _setFPS(_fps) { _model.setFPS(_fps); }
+  function _setDelay(_delay) { _model.setDelay(_delay); }
+  function _setStepsPerDisplay(_spd) { _model.setStepsPerDisplay(_spd); }
+  function _setUpdateView(_updateView) { _model.setUpdateView(_updateView); }
+  function _setAutoplay(_auto) { _model.setAutoplay(_auto); }
+  function _println(_message) { console.log(_message); }
+
+  function _breakAfterThisPage() { _model.setShouldBreak(true); }
+
+  function _resetSolvers() { if (_model.resetSolvers) _model.resetSolvers(); }
+
+  function _saveText(name,type,content) { if (_model.saveText) _model.saveText(name,type,content); }
+
+  function _saveState(name) { if (_model.saveState) _model.saveState(name); }
+
+  function _saveImage(name,panelname) { if (_model.saveImage) _model.saveImage(name,panelname); }
+
+  function _readState(url,type) { if (_model.readState) _model.readState(url,type); }
+
+  function _readText(url,type,varname) { if (_model.readText) _model.readText(url,type,varname); }
+
+  function _getStringProperty(propertyName) {
+    var _value = _stringProperties[propertyName];
+    if (_value===undefined) return propertyName;
+    else return _value;
+  }
+  var __pagesEnabled = [];
+  function _setPageEnabled(pageName,enabled) { __pagesEnabled[pageName] = enabled; }
+
+  var balance_bottom; // EjsS Model.Variables.Var Table.balance_bottom
+  var cube_top; // EjsS Model.Variables.Var Table.cube_top
+  var cube_bottom; // EjsS Model.Variables.Var Table.cube_bottom
+  var water_level; // EjsS Model.Variables.Var Table.water_level
+  var water_level_0; // EjsS Model.Variables.Var Table.water_level_0
+  var beaker_bottom; // EjsS Model.Variables.Var Table.beaker_bottom
+  var m; // EjsS Model.Variables.Var Table.m
+  var g; // EjsS Model.Variables.Var Table.g
+  var T; // EjsS Model.Variables.Var Table.T
+  var d; // EjsS Model.Variables.Var Table.d
+  var V_cube; // EjsS Model.Variables.Var Table.V_cube
+  var V_displaced; // EjsS Model.Variables.Var Table.V_displaced
+  var U; // EjsS Model.Variables.Var Table.U
+  var density_liquid; // EjsS Model.Variables.Var Table.density_liquid
+  var density_block; // EjsS Model.Variables.Var Table.density_block
+  var showForces; // EjsS Model.Variables.Var Table.showForces
+
+  _model.getOdes = function() { return []; };
+
+  _model.removeEvents = function(){
+  };
+
+  function _serialize() { return _model.serialize(); }
+
+  _model._userSerialize = function() {
+    return {
+      balance_bottom : balance_bottom,
+      cube_top : cube_top,
+      cube_bottom : cube_bottom,
+      water_level : water_level,
+      water_level_0 : water_level_0,
+      beaker_bottom : beaker_bottom,
+      m : m,
+      g : g,
+      T : T,
+      d : d,
+      V_cube : V_cube,
+      V_displaced : V_displaced,
+      U : U,
+      density_liquid : density_liquid,
+      density_block : density_block,
+      showForces : showForces
+    };
+  };
+
+  function _serializePublic() { return _model.serializePublic(); }
+
+  _model._userSerializePublic = function() {
+    return {
+      balance_bottom : balance_bottom,
+      cube_top : cube_top,
+      cube_bottom : cube_bottom,
+      water_level : water_level,
+      water_level_0 : water_level_0,
+      beaker_bottom : beaker_bottom,
+      m : m,
+      g : g,
+      T : T,
+      d : d,
+      V_cube : V_cube,
+      V_displaced : V_displaced,
+      U : U,
+      density_liquid : density_liquid,
+      density_block : density_block,
+      showForces : showForces
+    };
+  };
+
+  _model._readParameters = function(json) {
+    if(typeof json.balance_bottom != "undefined") balance_bottom = json.balance_bottom;
+    if(typeof json.cube_top != "undefined") cube_top = json.cube_top;
+    if(typeof json.cube_bottom != "undefined") cube_bottom = json.cube_bottom;
+    if(typeof json.water_level != "undefined") water_level = json.water_level;
+    if(typeof json.water_level_0 != "undefined") water_level_0 = json.water_level_0;
+    if(typeof json.beaker_bottom != "undefined") beaker_bottom = json.beaker_bottom;
+    if(typeof json.m != "undefined") m = json.m;
+    if(typeof json.g != "undefined") g = json.g;
+    if(typeof json.T != "undefined") T = json.T;
+    if(typeof json.d != "undefined") d = json.d;
+    if(typeof json.V_cube != "undefined") V_cube = json.V_cube;
+    if(typeof json.V_displaced != "undefined") V_displaced = json.V_displaced;
+    if(typeof json.U != "undefined") U = json.U;
+    if(typeof json.density_liquid != "undefined") density_liquid = json.density_liquid;
+    if(typeof json.density_block != "undefined") density_block = json.density_block;
+    if(typeof json.showForces != "undefined") showForces = json.showForces;
+  };
+
+  _model._readParametersPublic = function(json) {
+    if(typeof json.balance_bottom != "undefined") balance_bottom = json.balance_bottom;
+    if(typeof json.cube_top != "undefined") cube_top = json.cube_top;
+    if(typeof json.cube_bottom != "undefined") cube_bottom = json.cube_bottom;
+    if(typeof json.water_level != "undefined") water_level = json.water_level;
+    if(typeof json.water_level_0 != "undefined") water_level_0 = json.water_level_0;
+    if(typeof json.beaker_bottom != "undefined") beaker_bottom = json.beaker_bottom;
+    if(typeof json.m != "undefined") m = json.m;
+    if(typeof json.g != "undefined") g = json.g;
+    if(typeof json.T != "undefined") T = json.T;
+    if(typeof json.d != "undefined") d = json.d;
+    if(typeof json.V_cube != "undefined") V_cube = json.V_cube;
+    if(typeof json.V_displaced != "undefined") V_displaced = json.V_displaced;
+    if(typeof json.U != "undefined") U = json.U;
+    if(typeof json.density_liquid != "undefined") density_liquid = json.density_liquid;
+    if(typeof json.density_block != "undefined") density_block = json.density_block;
+    if(typeof json.showForces != "undefined") showForces = json.showForces;
+  };
+
+  function _unserializePublic(json) { return _model.unserializePublic(json); }
+
+  _model._userUnserializePublic = function(json) {
+    _model._readParametersPublic(json);
+   _resetSolvers();
+   _model.update();
+  };
+
+  function _unserialize(json) { return _model.unserialize(json); }
+
+  _model._userUnserialize = function(json) {
+    _model._readParameters(json);
+   _resetSolvers();
+   _model.update();
+  };
+
+  _model.addToReset(function() {
+    __pagesEnabled["Init Page"] = true;
+    __pagesEnabled["FixRel Page"] = true;
+  });
+
+  _model.addToReset(function() {
+    balance_bottom = 0.7; // EjsS Model.Variables.Var Table.balance_bottom
+    water_level = 0.3; // EjsS Model.Variables.Var Table.water_level
+    water_level_0 = 0.3; // EjsS Model.Variables.Var Table.water_level_0
+    beaker_bottom = 0; // EjsS Model.Variables.Var Table.beaker_bottom
+    g = 9.81; // EjsS Model.Variables.Var Table.g
+    d = 0.1; // EjsS Model.Variables.Var Table.d
+    density_liquid = 1000; // EjsS Model.Variables.Var Table.density_liquid
+    density_block = 8500; // EjsS Model.Variables.Var Table.density_block
+    showForces = false; // EjsS Model.Variables.Var Table.showForces
+  });
+
+  if (_inputParameters) {
+    _inputParameters = _model.parseInputParameters(_inputParameters);
+    if (_inputParameters) _model.addToReset(function() { _model._readParameters(_inputParameters); });
+  }
+
+  _model.addToReset(function() {
+    _model.setAutoplay(false);
+    _model.setFPS(20);
+    _model.setStepsPerDisplay(1);
+  });
+
+  _model.addToInitialization(function() {
+    if (!__pagesEnabled["Init Page"]) return;
+    V_cube = d*d*d;  // > Initialization.Init Page:1
+    m = V_cube * density_block;  // > Initialization.Init Page:2
+  });
+
+  _model.addToFixedRelations(function() { _isPaused = _model.isPaused(); _isPlaying = _model.isPlaying(); });
+
+  _model.addToFixedRelations(function() {
+    if (!__pagesEnabled["FixRel Page"]) return;
+    cube_top = balance_bottom - 0.2;  // > FixedRelations.FixRel Page:1
+    cube_bottom = cube_top - d;  // > FixedRelations.FixRel Page:2
+    if (cube_bottom > water_level)  // > FixedRelations.FixRel Page:3
+    {  // > FixedRelations.FixRel Page:4
+      T = m*g;  // > FixedRelations.FixRel Page:5
+      V_displaced = 0;  // > FixedRelations.FixRel Page:6
+    }  // > FixedRelations.FixRel Page:7
+    else if ((cube_bottom < water_level) && (cube_top > water_level))  // > FixedRelations.FixRel Page:8
+    {  // > FixedRelations.FixRel Page:9
+      V_displaced = Math.abs(water_level - cube_bottom)*d*d;  // > FixedRelations.FixRel Page:10
+      U = V_displaced * density_liquid * g;  // > FixedRelations.FixRel Page:11
+      T = m*g - U;  // > FixedRelations.FixRel Page:12
+    }  // > FixedRelations.FixRel Page:13
+    else  // > FixedRelations.FixRel Page:14
+    {  // > FixedRelations.FixRel Page:15
+      U = V_cube * density_liquid * g;  // > FixedRelations.FixRel Page:16
+      T = m*g - U;  // > FixedRelations.FixRel Page:17
+    }  // > FixedRelations.FixRel Page:18
+  });
+
+  _model.addToFixedRelations(function() { _isPaused = _model.isPaused(); _isPlaying = _model.isPlaying(); });
+
+    _model._fontResized = function(iBase,iSize,iDelta) {
+      _view._fontResized(iBase,iSize,iDelta);
+  }; // end of _fontResized
+
+  function _getViews() {
+    var _viewsInfo = [];
+    var _counter = 0;
+    _viewsInfo[_counter++] = { name : "HtmlView Page", width : 800, height : 600 };
+    return _viewsInfo;
+  } // end of _getViews
+
+  function _selectView(_viewNumber) {
+    _view = null;
+    _view = new archimedes_20180621_View(_topFrame,_viewNumber,_libraryPath,_codebasePath);
+    var _view_super_reset = _view._reset;
+    _view._reset = function() {
+      _view_super_reset();
+      switch(_viewNumber) {
+        case -10 : break; // make Lint happy
+        default :
+        case 0:
+          _view.balance_shape.linkProperty("Y",  function() { return balance_bottom; }, function(_v) { balance_bottom = _v; } ); // HtmlView Page linking property 'Y' for element 'balance_shape'
+          _view.LCD_shape.linkProperty("Y",  function() { return balance_bottom + 0.07; } ); // HtmlView Page linking property 'Y' for element 'LCD_shape'
+          _view.reading_text.linkProperty("Y",  function() { return balance_bottom + 0.07; } ); // HtmlView Page linking property 'Y' for element 'reading_text'
+          _view.reading_text.linkProperty("Text",  function() { return _view._format(T,"0.00")+" N"; } ); // HtmlView Page linking property 'Text' for element 'reading_text'
+          _view.cube_shape.linkProperty("SizeX",  function() { return d; }, function(_v) { d = _v; } ); // HtmlView Page linking property 'SizeX' for element 'cube_shape'
+          _view.cube_shape.linkProperty("Y",  function() { return cube_top; }, function(_v) { cube_top = _v; } ); // HtmlView Page linking property 'Y' for element 'cube_shape'
+          _view.cube_shape.linkProperty("SizeY",  function() { return d; }, function(_v) { d = _v; } ); // HtmlView Page linking property 'SizeY' for element 'cube_shape'
+          _view.balance_string.linkProperty("Y",  function() { return balance_bottom; }, function(_v) { balance_bottom = _v; } ); // HtmlView Page linking property 'Y' for element 'balance_string'
+          _view.balance_string.linkProperty("SizeY",  function() { return -(balance_bottom - cube_top); } ); // HtmlView Page linking property 'SizeY' for element 'balance_string'
+          _view.water_shape.linkProperty("Y",  function() { return beaker_bottom; }, function(_v) { beaker_bottom = _v; } ); // HtmlView Page linking property 'Y' for element 'water_shape'
+          _view.water_shape.linkProperty("SizeY",  function() { return water_level - beaker_bottom; } ); // HtmlView Page linking property 'SizeY' for element 'water_shape'
+          _view.beaker_left.linkProperty("Y",  function() { return beaker_bottom; }, function(_v) { beaker_bottom = _v; } ); // HtmlView Page linking property 'Y' for element 'beaker_left'
+          _view.beaker_right.linkProperty("Y",  function() { return beaker_bottom; }, function(_v) { beaker_bottom = _v; } ); // HtmlView Page linking property 'Y' for element 'beaker_right'
+          _view.beaker_bottom.linkProperty("Y",  function() { return beaker_bottom; }, function(_v) { beaker_bottom = _v; } ); // HtmlView Page linking property 'Y' for element 'beaker_bottom'
+          _view.balance_text.linkProperty("Y",  function() { return balance_bottom + 0.07; } ); // HtmlView Page linking property 'Y' for element 'balance_text'
+          _view.T_arrow.linkProperty("Y",  function() { return cube_top; }, function(_v) { cube_top = _v; } ); // HtmlView Page linking property 'Y' for element 'T_arrow'
+          _view.T_arrow.linkProperty("Visibility",  function() { return showForces; }, function(_v) { showForces = _v; } ); // HtmlView Page linking property 'Visibility' for element 'T_arrow'
+          _view.T_arrow.linkProperty("SizeY",  function() { return T/500; } ); // HtmlView Page linking property 'SizeY' for element 'T_arrow'
+          _view.T_text.linkProperty("Y",  function() { return cube_top + T/600; } ); // HtmlView Page linking property 'Y' for element 'T_text'
+          _view.T_text.linkProperty("Visibility",  function() { return showForces; }, function(_v) { showForces = _v; } ); // HtmlView Page linking property 'Visibility' for element 'T_text'
+          _view.W_arrow.linkProperty("Y",  function() { return (cube_top + cube_bottom)/2; } ); // HtmlView Page linking property 'Y' for element 'W_arrow'
+          _view.W_arrow.linkProperty("Visibility",  function() { return showForces; }, function(_v) { showForces = _v; } ); // HtmlView Page linking property 'Visibility' for element 'W_arrow'
+          _view.W_arrow.linkProperty("SizeY",  function() { return -m*g/500; } ); // HtmlView Page linking property 'SizeY' for element 'W_arrow'
+          _view.W_text.linkProperty("Y",  function() { return (cube_top + cube_bottom)/2-m*g/500; } ); // HtmlView Page linking property 'Y' for element 'W_text'
+          _view.W_text.linkProperty("Visibility",  function() { return showForces; }, function(_v) { showForces = _v; } ); // HtmlView Page linking property 'Visibility' for element 'W_text'
+          _view.U_arrow.linkProperty("Y",  function() { return (cube_top + cube_bottom)/2; } ); // HtmlView Page linking property 'Y' for element 'U_arrow'
+          _view.U_arrow.linkProperty("Visibility",  function() { return showForces; }, function(_v) { showForces = _v; } ); // HtmlView Page linking property 'Visibility' for element 'U_arrow'
+          _view.U_arrow.linkProperty("SizeY",  function() { return U/250; } ); // HtmlView Page linking property 'SizeY' for element 'U_arrow'
+          _view.U_text.linkProperty("Y",  function() { return (cube_top + cube_bottom)/2 + U/600; } ); // HtmlView Page linking property 'Y' for element 'U_text'
+          _view.U_text.linkProperty("Visibility",  function() { return showForces && (U>0.5); } ); // HtmlView Page linking property 'Visibility' for element 'U_text'
+          _view.height_slider.linkProperty("Value",  function() { return balance_bottom; }, function(_v) { balance_bottom = _v; } ); // HtmlView Page linking property 'Value' for element 'height_slider'
+          _view.showForces_checkBox.linkProperty("Checked",  function() { return showForces; }, function(_v) { showForces = _v; } ); // HtmlView Page linking property 'Checked' for element 'showForces_checkBox'
+          _view.runPauseButton.setAction("OffClick", _pause); // HtmlView Page setting action 'OffClick' for element 'runPauseButton'
+          _view.runPauseButton.linkProperty("State",  function() { return _isPaused; } ); // HtmlView Page linking property 'State' for element 'runPauseButton'
+          _view.runPauseButton.setAction("OnClick", _play); // HtmlView Page setting action 'OnClick' for element 'runPauseButton'
+          _view.stepButton.setAction("OnClick", _step); // HtmlView Page setting action 'OnClick' for element 'stepButton'
+          _view.initButton.setAction("OnClick", _initialize); // HtmlView Page setting action 'OnClick' for element 'initButton'
+          _view.resetButton.setAction("OnClick", _reset); // HtmlView Page setting action 'OnClick' for element 'resetButton'
+          break;
+      } // end of switch
+    }; // end of new reset
+
+    _model.setView(_view);
+    _model.reset();
+    _view._enableEPub();
+  } // end of _selectView
+
+  _model.setAutoplay(false);
+  _model.setFPS(20);
+  _model.setStepsPerDisplay(1);
+  _selectView(_model._autoSelectView(_getViews())); // this includes _model.reset()
+  return _model;
+}
+
+function archimedes_20180621_View (_topFrame,_viewNumber,_libraryPath,_codebasePath) {
+  var _view;
+  switch(_viewNumber) {
+    case -10 : break; // make Lint happy
+    default :
+    case 0: _view = archimedes_20180621_View_0 (_topFrame); break;
+  } // end of switch
+
+  if (_codebasePath) _view._setResourcePath(_codebasePath);
+
+  if (_libraryPath) _view._setLibraryPath(_libraryPath);
+
+
+  return _view;
+} // end of main function
+
+function archimedes_20180621_View_0 (_topFrame) {
+  var _view = EJSS_CORE.createView(_topFrame);
+
+  _view._reset = function() {
+    _view._clearAll();
+    _view._addElement(EJSS_INTERFACE.panel,"singleDrawingPanel", _view._topFrame) // EJsS HtmlView.HtmlView Page: declaration of element 'singleDrawingPanel'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.wrappedPanel,"wrappedPanel", _view.singleDrawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'wrappedPanel'
+      .setProperty("CSS",{ "display":"block"}) // EJsS HtmlView.HtmlView Page: setting property 'CSS' for element 'wrappedPanel'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.drawingPanel,"drawingPanel", _view.wrappedPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'drawingPanel'
+      .setProperty("Height",400) // EJsS HtmlView.HtmlView Page: setting property 'Height' for element 'drawingPanel'
+      .setProperty("Width",400) // EJsS HtmlView.HtmlView Page: setting property 'Width' for element 'drawingPanel'
+      .setProperty("MinimumX",-0.5) // EJsS HtmlView.HtmlView Page: setting property 'MinimumX' for element 'drawingPanel'
+      .setProperty("MinimumY",-0.1) // EJsS HtmlView.HtmlView Page: setting property 'MinimumY' for element 'drawingPanel'
+      .setProperty("AutoScaleY",false) // EJsS HtmlView.HtmlView Page: setting property 'AutoScaleY' for element 'drawingPanel'
+      .setProperty("AutoScaleX",false) // EJsS HtmlView.HtmlView Page: setting property 'AutoScaleX' for element 'drawingPanel'
+      .setProperty("MaximumY",0.9) // EJsS HtmlView.HtmlView Page: setting property 'MaximumY' for element 'drawingPanel'
+      .setProperty("MaximumX",0.5) // EJsS HtmlView.HtmlView Page: setting property 'MaximumX' for element 'drawingPanel'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.segment,"floor_segment", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'floor_segment'
+      .setProperty("SizeX",1) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'floor_segment'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'floor_segment'
+      .setProperty("Y",0) // EJsS HtmlView.HtmlView Page: setting property 'Y' for element 'floor_segment'
+      .setProperty("SizeY",0) // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'floor_segment'
+      .setProperty("LineWidth",2) // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'floor_segment'
+      .setProperty("Offset","CENTERED") // EJsS HtmlView.HtmlView Page: setting property 'Offset' for element 'floor_segment'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.shape,"balance_shape", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'balance_shape'
+      .setProperty("FillColor","DarkGray") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'balance_shape'
+      .setProperty("SizeX",0.3) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'balance_shape'
+      .setProperty("RelativePosition","SOUTH") // EJsS HtmlView.HtmlView Page: setting property 'RelativePosition' for element 'balance_shape'
+      .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.HtmlView Page: setting property 'ShapeType' for element 'balance_shape'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'balance_shape'
+      .setProperty("LineColor","Black") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'balance_shape'
+      .setProperty("SizeY",0.15) // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'balance_shape'
+      .setProperty("LineWidth",1) // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'balance_shape'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.shape,"LCD_shape", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'LCD_shape'
+      .setProperty("FillColor","rgba(200,220,208,1)") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'LCD_shape'
+      .setProperty("SizeX",0.2) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'LCD_shape'
+      .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.HtmlView Page: setting property 'ShapeType' for element 'LCD_shape'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'LCD_shape'
+      .setProperty("SizeY",0.1) // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'LCD_shape'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.text,"reading_text", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'reading_text'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'reading_text'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.shape,"cube_shape", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'cube_shape'
+      .setProperty("FillColor","Orange") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'cube_shape'
+      .setProperty("RelativePosition","NORTH") // EJsS HtmlView.HtmlView Page: setting property 'RelativePosition' for element 'cube_shape'
+      .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.HtmlView Page: setting property 'ShapeType' for element 'cube_shape'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'cube_shape'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.segment,"balance_string", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'balance_string'
+      .setProperty("SizeX",0) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'balance_string'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'balance_string'
+      .setProperty("LineWidth",2) // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'balance_string'
+      .setProperty("Offset","SOUTH_WEST") // EJsS HtmlView.HtmlView Page: setting property 'Offset' for element 'balance_string'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.shape,"water_shape", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'water_shape'
+      .setProperty("FillColor","rgba(0,255,255,0.5)") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'water_shape'
+      .setProperty("SizeX",0.4) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'water_shape'
+      .setProperty("RelativePosition","SOUTH") // EJsS HtmlView.HtmlView Page: setting property 'RelativePosition' for element 'water_shape'
+      .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.HtmlView Page: setting property 'ShapeType' for element 'water_shape'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'water_shape'
+      .setProperty("LineColor","Cyan") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'water_shape'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.segment,"beaker_left", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'beaker_left'
+      .setProperty("SizeX",0) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'beaker_left'
+      .setProperty("X",-0.2) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'beaker_left'
+      .setProperty("LineColor","Black") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'beaker_left'
+      .setProperty("SizeY",0.35) // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'beaker_left'
+      .setProperty("LineWidth",2) // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'beaker_left'
+      .setProperty("Offset","SOUTH_WEST") // EJsS HtmlView.HtmlView Page: setting property 'Offset' for element 'beaker_left'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.segment,"beaker_right", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'beaker_right'
+      .setProperty("SizeX",0) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'beaker_right'
+      .setProperty("X",0.2) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'beaker_right'
+      .setProperty("SizeY",0.35) // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'beaker_right'
+      .setProperty("LineWidth",2) // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'beaker_right'
+      .setProperty("Offset","SOUTH_WEST") // EJsS HtmlView.HtmlView Page: setting property 'Offset' for element 'beaker_right'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.segment,"beaker_bottom", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'beaker_bottom'
+      .setProperty("SizeX",0.4) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'beaker_bottom'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'beaker_bottom'
+      .setProperty("SizeY",0) // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'beaker_bottom'
+      .setProperty("LineWidth",2) // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'beaker_bottom'
+      .setProperty("Offset","CENTERED") // EJsS HtmlView.HtmlView Page: setting property 'Offset' for element 'beaker_bottom'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.text,"balance_text", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'balance_text'
+      .setProperty("X",-0.3) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'balance_text'
+      .setProperty("Text","force meter") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'balance_text'
+      .setProperty("Font","normal normal 16px \"Times New Roman\", Times, serif") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'balance_text'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.arrow,"T_arrow", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'T_arrow'
+      .setProperty("SizeX",0) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'T_arrow'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'T_arrow'
+      .setProperty("LineColor","Red") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'T_arrow'
+      .setProperty("LineWidth",2) // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'T_arrow'
+      .setProperty("Offset","SOUTH_WEST") // EJsS HtmlView.HtmlView Page: setting property 'Offset' for element 'T_arrow'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.text,"T_text", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'T_text'
+      .setProperty("FillColor","Red") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'T_text'
+      .setProperty("X",0.05) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'T_text'
+      .setProperty("Text","T") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'T_text'
+      .setProperty("Font","italic normal 20px \"Times New Roman\", Times, serif") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'T_text'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.arrow,"W_arrow", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'W_arrow'
+      .setProperty("SizeX",0) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'W_arrow'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'W_arrow'
+      .setProperty("LineColor","Blue") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'W_arrow'
+      .setProperty("LineWidth",2) // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'W_arrow'
+      .setProperty("Offset","SOUTH_WEST") // EJsS HtmlView.HtmlView Page: setting property 'Offset' for element 'W_arrow'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.text,"W_text", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'W_text'
+      .setProperty("FillColor","Blue") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'W_text'
+      .setProperty("X",0.05) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'W_text'
+      .setProperty("Text","W") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'W_text'
+      .setProperty("Font","italic normal 20px \"Times New Roman\", Times, serif") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'W_text'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.arrow,"U_arrow", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'U_arrow'
+      .setProperty("SizeX",0) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'U_arrow'
+      .setProperty("X",0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'U_arrow'
+      .setProperty("LineColor","rgba(0,255,0,1.0)") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'U_arrow'
+      .setProperty("LineWidth",4) // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'U_arrow'
+      .setProperty("Offset","SOUTH_WEST") // EJsS HtmlView.HtmlView Page: setting property 'Offset' for element 'U_arrow'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.text,"U_text", _view.drawingPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'U_text'
+      .setProperty("FillColor","Green") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'U_text'
+      .setProperty("X",0.05) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'U_text'
+      .setProperty("Text","U") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'U_text'
+      .setProperty("Font","italic normal 20px \"Times New Roman\", Times, serif") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'U_text'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"controlPanel", _view.wrappedPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'controlPanel'
+      .setProperty("Width",398) // EJsS HtmlView.HtmlView Page: setting property 'Width' for element 'controlPanel'
+      .setProperty("CSS",{"display":"block"}) // EJsS HtmlView.HtmlView Page: setting property 'CSS' for element 'controlPanel'
+      .setProperty("BorderStyle","solid") // EJsS HtmlView.HtmlView Page: setting property 'BorderStyle' for element 'controlPanel'
+      .setProperty("BorderColor","Gray") // EJsS HtmlView.HtmlView Page: setting property 'BorderColor' for element 'controlPanel'
+      .setProperty("BorderWidth",1) // EJsS HtmlView.HtmlView Page: setting property 'BorderWidth' for element 'controlPanel'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"slider_panel", _view.controlPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'slider_panel'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.imageAndTextButton,"slider_label", _view.slider_panel) // EJsS HtmlView.HtmlView Page: declaration of element 'slider_label'
+      .setProperty("Text","Adjust height of force meter:") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'slider_label'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.slider,"height_slider", _view.slider_panel) // EJsS HtmlView.HtmlView Page: declaration of element 'height_slider'
+      .setProperty("Width",300) // EJsS HtmlView.HtmlView Page: setting property 'Width' for element 'height_slider'
+      .setProperty("Minimum",0.35) // EJsS HtmlView.HtmlView Page: setting property 'Minimum' for element 'height_slider'
+      .setProperty("Maximum",0.8) // EJsS HtmlView.HtmlView Page: setting property 'Maximum' for element 'height_slider'
+      .setProperty("ShowText",false) // EJsS HtmlView.HtmlView Page: setting property 'ShowText' for element 'height_slider'
+      .setProperty("Step",0.001) // EJsS HtmlView.HtmlView Page: setting property 'Step' for element 'height_slider'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.checkBox,"showForces_checkBox", _view.slider_panel) // EJsS HtmlView.HtmlView Page: declaration of element 'showForces_checkBox'
+      .setProperty("Text","Show forces acting on block: ") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showForces_checkBox'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"firstRowPanel", _view.controlPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'firstRowPanel'
+      .setProperty("Visibility",false) // EJsS HtmlView.HtmlView Page: setting property 'Visibility' for element 'firstRowPanel'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"executionPanel", _view.firstRowPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'executionPanel'
+      .setProperty("Display","inline-block") // EJsS HtmlView.HtmlView Page: setting property 'Display' for element 'executionPanel'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.twoStateButton,"runPauseButton", _view.executionPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'runPauseButton'
+      .setProperty("Tooltip","Play/Pause") // EJsS HtmlView.HtmlView Page: setting property 'Tooltip' for element 'runPauseButton'
+      .setProperty("ImageOnUrl","/org/opensourcephysics/resources/controls/images/play.gif") // EJsS HtmlView.HtmlView Page: setting property 'ImageOnUrl' for element 'runPauseButton'
+      .setProperty("ImageOffUrl","/org/opensourcephysics/resources/controls/images/pause.gif") // EJsS HtmlView.HtmlView Page: setting property 'ImageOffUrl' for element 'runPauseButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"stepButton", _view.executionPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'stepButton'
+      .setProperty("Tooltip","Step") // EJsS HtmlView.HtmlView Page: setting property 'Tooltip' for element 'stepButton'
+      .setProperty("ImageUrl","/org/opensourcephysics/resources/controls/images/stepforward.gif") // EJsS HtmlView.HtmlView Page: setting property 'ImageUrl' for element 'stepButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"initButton", _view.executionPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'initButton'
+      .setProperty("Tooltip","Initialize") // EJsS HtmlView.HtmlView Page: setting property 'Tooltip' for element 'initButton'
+      .setProperty("ImageUrl","/org/opensourcephysics/resources/controls/images/reset1.gif") // EJsS HtmlView.HtmlView Page: setting property 'ImageUrl' for element 'initButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"resetButton", _view.executionPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'resetButton'
+      .setProperty("Tooltip","Reset") // EJsS HtmlView.HtmlView Page: setting property 'Tooltip' for element 'resetButton'
+      .setProperty("ImageUrl","/org/opensourcephysics/resources/controls/images/reset.gif") // EJsS HtmlView.HtmlView Page: setting property 'ImageUrl' for element 'resetButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"display_panel", _view.wrappedPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'display_panel'
+      ;
+
+  };
+
+  return _view;
+}
+
+
+//--><!]]></script>
+  </head>
+  <body>
+    <div role="button" id="_topFrame" style="text-align:center"></div>
+  <div id="metadata" class="metadata">
+    <br />
+    <div id="title_author">
+      <hr />
+      <b>Title and author:</b>
+      <p>
+      </p>
+      <p>
+ Author name
+      </p>
+    </div>
+    <hr />
+    <p></p>
+    <div id="copyright_message">
+      <div class="cc_left"  style="float:left">&#169; 2018, Author name.</div>
+      <div class="cc_right" style="float:right">    Released under a <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US"> <img alt="Creative Commons Attribution-NonCommercial-ShareAlike" src="_ejs_library/images/cc_icon.png" /> </a> license.</div>
+    </div>
+  </div>
+    <script type="text/javascript"><!--//--><![CDATA[//><!--
+      var _model;
+      var _scorm;
+      window.addEventListener('load',
+        function () { 
+          _model =  new archimedes_20180621("_topFrame","_ejs_library/",null);
+          if (typeof _isApp !== "undefined" && _isApp) _model.setRunAlways(true);
+          TextResizeDetector.TARGET_ELEMENT_ID = '_topFrame';
+          TextResizeDetector.USER_INIT_FUNC = function () {
+            var iBase = TextResizeDetector.addEventListener(function(e,args) {
+              _model._fontResized(args[0].iBase,args[0].iSize,args[0].iDelta);
+              },null);
+            _model._fontResized(iBase);
+          };
+          _model.onload();
+        }, false);
+    //--><!]]></script>
+  </body>
+</html>
